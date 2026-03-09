@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AES Web App</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+</head>
+
+<body>
+  <header class="container">
+    <nav>
+      <div class="logo">
+        <a href="#">LOGO</a>
+      </div>
+      <div class="menu">
+        <ul>
+          <li><a href="#">SERVER</a></li>
+          <li><a href="#">DOMAIN</a></li>
+          <li><a href="#">IP</a></li>
+        </ul>
+        <a href="#" class="menu-button">New Links</a>
+      </div>
+    </nav>
+  </header>
+
+  <section class="container content">
+    <h1>NEW MESSAGE</h1>
+    <p>STEP ONE — SYMMETRIC ENCRYPTION</p>
+    <div class="links">
+      <a href="#">FIRST SERVER</a>
+      <a href="#">SECOND SERVER</a>
+    </div>
+
+    <!-- AES Encryption Area -->
+    <div class="aes-box">
+      <h2>🔐 Message Encryption & Decryption</h2>
+
+      <label for="message">Message:</label>
+      <textarea id="message" rows="4" placeholder="Enter the message to encrypt..."></textarea>
+
+      <label for="key">Encryption Key:</label>
+      <input type="text" id="key" placeholder="Secret key" />
+
+      <div class="button-group">
+        <button onclick="encryptMessage()">Encrypt</button>
+        <button onclick="decryptMessage()">Decrypt</button>
+      </div>
+
+      <div class="result">
+        <strong>🔒 Encrypted Message:</strong>
+        <p id="encrypted"></p>
+
+        <strong>🔓 Decrypted Message:</strong>
+        <p id="decrypted"></p>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    function encryptMessage() {
+      const message = document.getElementById("message").value;
+      const key = document.getElementById("key").value;
+
+      if (!message || !key) {
+        alert("Please enter a message and a key.");
+        return;
+      }
+
+      const encrypted = CryptoJS.AES.encrypt(message, key).toString();
+      document.getElementById("encrypted").textContent = encrypted;
+      document.getElementById("decrypted").textContent = "";
+
+      fetch("/api/save", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ encryptedMessage: encrypted, key: key })
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.decrypted) {
+          document.getElementById("decrypted").textContent = data.decrypted;
+        } else if (data.error) {
+          document.getElementById("decrypted").textContent = data.error;
+        }
+      })
+      .catch(error => console.error("Error:", error));
+    }
+
+    function decryptMessage() {
+      const encrypted = document.getElementById("encrypted").textContent;
+      const key = document.getElementById("key").value;
+
+      if (!encrypted || !key) {
+        alert("Please encrypt a message first and enter a key.");
+        return;
+      }
+
+      try {
+        const bytes = CryptoJS.AES.decrypt(encrypted, key);
+        const decrypted = bytes.toString(CryptoJS.enc.Utf8);
+        if (!decrypted) throw new Error();
+        document.getElementById("decrypted").textContent = decrypted;
+      } catch {
+        document.getElementById("decrypted").textContent = "❌ Invalid key or data!";
+      }
+    }
+  </script>
+</body>
+</html>

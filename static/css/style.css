@@ -1,0 +1,204 @@
+/* General reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Page background */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #1a1a2e;
+    background-image: url("../images/foto1.png");
+    background-size: cover;
+    background-position: center;
+    color: #333;
+}
+
+/* Links */
+a {
+    color: green;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Container */
+.container {
+    width: 80%;
+    margin: auto;
+}
+
+/* Header */
+header {
+    height: 100px;
+    border-bottom: 2px solid white;
+}
+
+header nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+}
+
+header nav .logo a {
+    color: white;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 20px;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    column-gap: 30px;
+}
+
+nav ul a {
+    color: black;
+    text-decoration: none;
+    transition: color 0.25s ease;
+}
+
+nav ul li a:hover {
+    color: darkblue;
+}
+
+nav .menu {
+    display: flex;
+    align-items: center;
+    column-gap: 48px;
+}
+
+nav .menu .menu-button {
+    color: green;
+    text-decoration: none;
+    background-color: wheat;
+    padding: 12px 24px;
+    border-radius: 56px;
+    transition: all 0.25s ease;
+}
+
+nav .menu .menu-button:hover {
+    background-color: brown;
+    color: white;
+}
+
+/* Content */
+.content {
+    height: calc(100vh - 100px);
+    padding-top: 150px;
+}
+
+.content h1 {
+    font-size: 60px;
+    text-align: center;
+    color: #fff;
+}
+
+.content p {
+    font-size: 24px;
+    text-align: center;
+    margin-top: 32px;
+    color: #f2f2f2;
+}
+
+/* Server links */
+.content .links {
+    display: flex;
+    justify-content: center;
+    margin-top: 48px;
+    column-gap: 100px;
+}
+
+.content .links a {
+    background-color: rgb(29, 3, 3);
+    padding: 20px;
+    width: 180px;
+    text-align: center;
+    color: white;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+}
+
+.content .links a:hover {
+    background-color: darkred;
+}
+
+/* AES encryption box */
+.aes-box {
+    margin-top: 40px;
+    background-color: rgba(255, 255, 255, 0.92);
+    padding: 30px;
+    border-radius: 12px;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.aes-box h2 {
+    margin-bottom: 20px;
+    font-size: 22px;
+    color: #222;
+}
+
+.aes-box label {
+    display: block;
+    margin-top: 12px;
+    margin-bottom: 6px;
+    font-weight: 600;
+    color: #333;
+}
+
+.aes-box textarea,
+.aes-box input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+    font-family: inherit;
+    resize: vertical;
+}
+
+.aes-box .button-group {
+    display: flex;
+    gap: 12px;
+    margin-top: 16px;
+}
+
+.aes-box button {
+    padding: 10px 24px;
+    background-color: #1a1a2e;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 15px;
+    transition: background-color 0.25s ease;
+}
+
+.aes-box button:hover {
+    background-color: #16213e;
+}
+
+/* Result area */
+.result {
+    margin-top: 20px;
+    padding: 16px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    border: 1px solid #e0e0e0;
+}
+
+.result p {
+    word-wrap: break-word;
+    font-size: 14px;
+    color: #444;
+    margin-top: 6px;
+    margin-bottom: 12px;
+}
