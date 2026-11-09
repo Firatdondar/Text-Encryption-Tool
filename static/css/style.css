@@ -7,34 +7,23 @@
 
 /* Page background */
 body {
-    font-family: 'Poppins', sans-serif;
-    background-color: #1a1a2e;
-    background-image: url("../images/foto1.png");
-    background-size: cover;
-    background-position: center;
+    font-family: 'Segoe UI', 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #1a1a2e 100%);
+    min-height: 100vh;
     color: #333;
-}
-
-/* Links */
-a {
-    color: green;
-    text-decoration: none;
-}
-
-a:hover {
-    text-decoration: underline;
 }
 
 /* Container */
 .container {
-    width: 80%;
+    width: 85%;
+    max-width: 960px;
     margin: auto;
 }
 
 /* Header */
 header {
-    height: 100px;
-    border-bottom: 2px solid white;
+    height: 80px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
 }
 
 header nav {
@@ -45,160 +34,134 @@ header nav {
 }
 
 header nav .logo a {
-    color: white;
+    color: #ffffff;
     text-decoration: none;
     font-weight: 700;
     font-size: 20px;
+    letter-spacing: 0.5px;
 }
 
-nav ul {
-    list-style: none;
-    display: flex;
-    column-gap: 30px;
-}
-
-nav ul a {
-    color: black;
-    text-decoration: none;
-    transition: color 0.25s ease;
-}
-
-nav ul li a:hover {
-    color: darkblue;
-}
-
-nav .menu {
-    display: flex;
-    align-items: center;
-    column-gap: 48px;
-}
-
-nav .menu .menu-button {
-    color: green;
-    text-decoration: none;
-    background-color: wheat;
-    padding: 12px 24px;
-    border-radius: 56px;
-    transition: all 0.25s ease;
-}
-
-nav .menu .menu-button:hover {
-    background-color: brown;
-    color: white;
+nav .badge {
+    color: #38bdf8;
+    background-color: rgba(56, 189, 248, 0.12);
+    border: 1px solid rgba(56, 189, 248, 0.3);
+    padding: 6px 16px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 600;
 }
 
 /* Content */
 .content {
-    height: calc(100vh - 100px);
-    padding-top: 150px;
+    padding: 48px 0 64px;
 }
 
 .content h1 {
-    font-size: 60px;
+    font-size: 40px;
     text-align: center;
     color: #fff;
+    letter-spacing: 1px;
 }
 
-.content p {
-    font-size: 24px;
+.content > p {
+    font-size: 18px;
     text-align: center;
-    margin-top: 32px;
-    color: #f2f2f2;
-}
-
-/* Server links */
-.content .links {
-    display: flex;
-    justify-content: center;
-    margin-top: 48px;
-    column-gap: 100px;
-}
-
-.content .links a {
-    background-color: rgb(29, 3, 3);
-    padding: 20px;
-    width: 180px;
-    text-align: center;
-    color: white;
-    border-radius: 8px;
-    transition: background-color 0.3s ease;
-}
-
-.content .links a:hover {
-    background-color: darkred;
+    margin-top: 10px;
+    color: #94a3b8;
 }
 
 /* AES encryption box */
 .aes-box {
-    margin-top: 40px;
-    background-color: rgba(255, 255, 255, 0.92);
-    padding: 30px;
-    border-radius: 12px;
+    margin-top: 32px;
+    background-color: rgba(255, 255, 255, 0.96);
+    padding: 32px;
+    border-radius: 14px;
     max-width: 700px;
     margin-left: auto;
     margin-right: auto;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
 }
 
 .aes-box h2 {
     margin-bottom: 20px;
     font-size: 22px;
-    color: #222;
+    color: #0f172a;
 }
 
 .aes-box label {
     display: block;
-    margin-top: 12px;
+    margin-top: 14px;
     margin-bottom: 6px;
     font-weight: 600;
-    color: #333;
+    color: #334155;
 }
 
 .aes-box textarea,
 .aes-box input[type="text"] {
     width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
+    padding: 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
     font-size: 14px;
     font-family: inherit;
     resize: vertical;
 }
 
+.aes-box textarea:focus,
+.aes-box input[type="text"]:focus {
+    outline: none;
+    border-color: #2563eb;
+}
+
 .aes-box .button-group {
     display: flex;
     gap: 12px;
-    margin-top: 16px;
+    margin-top: 18px;
 }
 
 .aes-box button {
-    padding: 10px 24px;
-    background-color: #1a1a2e;
+    padding: 11px 24px;
+    background-color: #2563eb;
     color: white;
     border: none;
-    border-radius: 6px;
+    border-radius: 8px;
     cursor: pointer;
     font-size: 15px;
-    transition: background-color 0.25s ease;
+    font-weight: 600;
+    transition: background-color 0.2s ease;
 }
 
 .aes-box button:hover {
-    background-color: #16213e;
+    background-color: #1d4ed8;
+}
+
+.aes-box button.secondary-btn {
+    background-color: #1e293b;
+}
+
+.aes-box button.secondary-btn:hover {
+    background-color: #0f172a;
 }
 
 /* Result area */
 .result {
-    margin-top: 20px;
+    margin-top: 22px;
     padding: 16px;
-    background-color: #f9f9f9;
+    background-color: #f8fafc;
     border-radius: 8px;
-    border: 1px solid #e0e0e0;
+    border: 1px solid #e2e8f0;
+}
+
+.result strong {
+    color: #1e293b;
+    font-size: 14px;
 }
 
 .result p {
     word-wrap: break-word;
+    font-family: 'Consolas', 'Courier New', monospace;
     font-size: 14px;
-    color: #444;
+    color: #334155;
     margin-top: 6px;
     margin-bottom: 12px;
 }

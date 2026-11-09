@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AES Web App</title>
+  <title>AES Encryption Studio</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
 </head>
@@ -12,48 +12,39 @@
   <header class="container">
     <nav>
       <div class="logo">
-        <a href="#">LOGO</a>
+        <a href="/">🔐 AES Encryption Studio</a>
       </div>
       <div class="menu">
-        <ul>
-          <li><a href="#">SERVER</a></li>
-          <li><a href="#">DOMAIN</a></li>
-          <li><a href="#">IP</a></li>
-        </ul>
-        <a href="#" class="menu-button">New Links</a>
+        <span class="badge">AES-256-CBC / PKCS7</span>
       </div>
     </nav>
   </header>
 
   <section class="container content">
-    <h1>NEW MESSAGE</h1>
-    <p>STEP ONE — SYMMETRIC ENCRYPTION</p>
-    <div class="links">
-      <a href="#">FIRST SERVER</a>
-      <a href="#">SECOND SERVER</a>
-    </div>
+    <h1>SYMMETRIC ENCRYPTION</h1>
+    <p>Client &amp; Server Verified AES Message Encryption</p>
 
     <!-- AES Encryption Area -->
     <div class="aes-box">
-      <h2>🔐 Message Encryption & Decryption</h2>
+      <h2>🔐 Message Encryption &amp; Decryption</h2>
 
       <label for="message">Message:</label>
       <textarea id="message" rows="4" placeholder="Enter the message to encrypt..."></textarea>
 
       <label for="key">Encryption Key:</label>
-      <input type="text" id="key" placeholder="Secret key" />
+      <input type="text" id="key" placeholder="Enter secret key..." />
 
       <div class="button-group">
-        <button onclick="encryptMessage()">Encrypt</button>
-        <button onclick="decryptMessage()">Decrypt</button>
+        <button onclick="encryptMessage()">Encrypt &amp; Verify</button>
+        <button class="secondary-btn" onclick="decryptMessage()">Decrypt Locally</button>
       </div>
 
       <div class="result">
-        <strong>🔒 Encrypted Message:</strong>
-        <p id="encrypted"></p>
+        <strong>🔒 Encrypted Ciphertext (Base64):</strong>
+        <p id="encrypted">—</p>
 
-        <strong>🔓 Decrypted Message:</strong>
-        <p id="decrypted"></p>
+        <strong>🔓 Decrypted Plaintext:</strong>
+        <p id="decrypted">—</p>
       </div>
     </div>
   </section>
@@ -64,13 +55,13 @@
       const key = document.getElementById("key").value;
 
       if (!message || !key) {
-        alert("Please enter a message and a key.");
+        alert("Please enter both a message and a secret key.");
         return;
       }
 
       const encrypted = CryptoJS.AES.encrypt(message, key).toString();
       document.getElementById("encrypted").textContent = encrypted;
-      document.getElementById("decrypted").textContent = "";
+      document.getElementById("decrypted").textContent = "Verifying with server...";
 
       fetch("/api/save", {
         method: "POST",
@@ -92,7 +83,7 @@
       const encrypted = document.getElementById("encrypted").textContent;
       const key = document.getElementById("key").value;
 
-      if (!encrypted || !key) {
+      if (!encrypted || encrypted === "—" || !key) {
         alert("Please encrypt a message first and enter a key.");
         return;
       }
@@ -103,7 +94,7 @@
         if (!decrypted) throw new Error();
         document.getElementById("decrypted").textContent = decrypted;
       } catch {
-        document.getElementById("decrypted").textContent = "❌ Invalid key or data!";
+        document.getElementById("decrypted").textContent = "❌ Invalid key or corrupted ciphertext!";
       }
     }
   </script>
